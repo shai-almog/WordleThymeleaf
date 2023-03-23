@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Java Wordle</title>
+</head>
+<body>
+    <style>
+        .GREEN {
+            background: green;
+            color: white;
+            padding: 1.5mm;
+        }
+        .YELLOW {
+            background: yellow;
+            padding: 1.5mm;
+        }
+        .BLACK {
+            background: black;
+            color: white;
+            padding: 1.5mm;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+
+    <p class="error" th:text="${errorMessage}"></p>
+
+    <ul>
+        <li th:each="entry : ${entries}">
+            <b th:each="character : ${entry}"
+               th:class="${character.color}"
+               th:text="${character.letter}">A</b>
+        </li>
+    </ul>
+
+    <form action="#" method="post" th:action="@{/guessMVC}">
+        <p>Message: <input type="text" name="guess"/></p>
+        <p><input type="submit" value="Submit"/></p>
+    </form>
+</body>
+</html>
